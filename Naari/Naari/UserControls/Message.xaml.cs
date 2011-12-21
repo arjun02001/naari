@@ -11,18 +11,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Naari.Classes;
-using Naari.UserControls;
 
-namespace Naari
+namespace Naari.UserControls
 {
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Interaction logic for Message.xaml
+    /// </summary>
+    public partial class Message : UserControl
     {
-        public MainWindow()
+        public Message()
         {
             InitializeComponent();
-            Message m = new Message();
-            m.uiChildWindow.Show();
         }
     }
 }
