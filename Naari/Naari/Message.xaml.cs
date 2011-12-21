@@ -9,14 +9,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Naari
 {
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Interaction logic for Message.xaml
+    /// </summary>
+    public partial class Message : Window
     {
-        public MainWindow()
+        public Message()
         {
             InitializeComponent();
         }
