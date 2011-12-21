@@ -3,6 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Naari" Height="350" Width="525" WindowState="Maximized">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Border BorderThickness="1" BorderBrush="Black" Margin="5">
+                <StackPanel Orientation="Vertical">
+                    <Button x:Name="uiAddNewItem" Content="Add New Item" Margin="5" Click="uiAddNewItem_Click"></Button>
+                    <Button x:Name="uiUpdateItem" Content="Update Item" Margin="5" Click="uiUpdateItem_Click"></Button>
+                    <Button x:Name="uiDeleteItem" Content="Delete Item" Margin="5" Click="uiDeleteItem_Click"></Button>
+                </StackPanel>
+            </Border>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Border BorderThickness="1" BorderBrush="Black" Margin="5">
+                <DataGrid x:Name="uiDataGrid" AlternatingRowBackground="AliceBlue" AlternationCount="2" CanUserResizeColumns="True" CanUserSortColumns="True"></DataGrid>
+            </Border>
+        </Grid>
     </Grid>
 </Window>
