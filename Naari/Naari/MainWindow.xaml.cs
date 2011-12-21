@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Naari.Classes;
+using Naari.Windows;
 
 namespace Naari
 {
@@ -30,7 +31,8 @@ namespace Naari
 
         private void uiAddNewItem_Click(object sender, RoutedEventArgs e)
         {
-
+            NewItem newItem = new NewItem();
+            newItem.Show();
         }
 
         private void uiUpdateItem_Click(object sender, RoutedEventArgs e)
