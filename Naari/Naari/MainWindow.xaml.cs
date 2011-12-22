@@ -43,14 +43,22 @@ namespace Naari
             newItem.Show();
         }
 
-        void newItem_NewItemCreated(bool created)
-        {
-            throw new NotImplementedException();
-        }
-
         private void uiUpdateItem_Click(object sender, RoutedEventArgs e)
         {
-
+            if (null == uiDataGrid.SelectedItem)
+            {
+                MessageBox.Show("Select item to update");
+                return;
+            }
+            UpdateItem updateItem = new UpdateItem((Item)uiDataGrid.SelectedItem);
+            updateItem.ItemUpdated += (u) =>
+                {
+                    if (u)
+                    {
+                        PopulateItems();
+                    }
+                };
+            updateItem.Show();
         }
 
         private void uiDeleteItem_Click(object sender, RoutedEventArgs e)

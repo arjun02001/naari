@@ -7,7 +7,7 @@ using System.Data;
 
 namespace Naari.Classes
 {
-    class Item
+    public class Item
     {
         public int ID { get; set; }
         public string PurchaseDate { get; set; }
