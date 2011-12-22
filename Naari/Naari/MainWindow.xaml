@@ -10,6 +10,12 @@
         <Grid Grid.Column="0">
             <Border BorderThickness="1" BorderBrush="Black" Margin="5">
                 <StackPanel Orientation="Vertical">
+                    <TextBlock x:Name="uiTotalItems" Margin="5"></TextBlock>
+                    <ComboBox x:Name="uiShowAll" Margin="5" SelectionChanged="uiShowAll_SelectionChanged" SelectedIndex="0">
+                        <ComboBoxItem>Show All</ComboBoxItem>
+                        <ComboBoxItem>Show Sold</ComboBoxItem>
+                        <ComboBoxItem>Show Unsold</ComboBoxItem>
+                    </ComboBox>
                     <Button x:Name="uiAddNewItem" Content="Add New Item" Margin="5" Click="uiAddNewItem_Click"></Button>
                     <Button x:Name="uiUpdateItem" Content="Update Item" Margin="5" Click="uiUpdateItem_Click"></Button>
                     <Button x:Name="uiDeleteItem" Content="Delete Item" Margin="5" Click="uiDeleteItem_Click"></Button>

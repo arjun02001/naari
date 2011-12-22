@@ -24,27 +24,42 @@ namespace Naari.Classes
             List<Item> items = new List<Item>();
             try
             {
-                string sql = string.Format(" select * from Naari ");
-                DataTable dt = DataManager.GetData(sql);
-                foreach (DataRow dr in dt.Rows)
-                {
-                    items.Add(new Item()
-                    {
-                        ID = Convert.ToInt32(dr["ID"]),
-                        PurchaseDate = Convert.ToDateTime(dr["PurchaseDate"]).ToShortDateString(),
-                        Vendor = dr["Vendor"].ToString(),
-                        BillNumber = dr["BillNumber"].ToString(),
-                        ItemName = dr["ItemName"].ToString(),
-                        CostPrice = Convert.ToDouble(dr["CostPrice"]),
-                        Location = (dr["Location"] != DBNull.Value) ? dr["Location"].ToString() : string.Empty,
-                        SellingPrice = (dr["SellingPrice"] != DBNull.Value) ? Convert.ToDouble(dr["SellingPrice"]) : (double?)null,
-                        SellingDate = (dr["SellingDate"] != DBNull.Value) ? Convert.ToDateTime(dr["SellingDate"]).ToShortDateString() : string.Empty
-                    });
-                }
+                string sql = string.Format(" select * from Naari order by ID desc ");
+                items = Utility.PopulateItemsCollection(DataManager.GetData(sql));
             }
             catch (Exception)
             {
                 MessageBox.Show("Error while getting items");
+            }
+            return items;
+        }
+
+        public static List<Item> GetUnsoldItems()
+        {
+            List<Item> items = new List<Item>();
+            try
+            {
+                string sql = string.Format(" select * from Naari where SellingPrice is null order by ID desc ");
+                items = Utility.PopulateItemsCollection(DataManager.GetData(sql));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error while getting Unsold items");
+            }
+            return items;
+        }
+
+        public static List<Item> GetSoldItems()
+        {
+            List<Item> items = new List<Item>();
+            try
+            {
+                string sql = string.Format(" select * from Naari where SellingPrice <> null order by ID desc ");
+                items = Utility.PopulateItemsCollection(DataManager.GetData(sql));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error while getting Sold items");
             }
             return items;
         }
