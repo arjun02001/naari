@@ -18,7 +18,7 @@ namespace Naari.Windows
     {
         public delegate void ItemUpdatedHandler(bool updated);
         public event ItemUpdatedHandler ItemUpdated;
-        Item item;
+        int id;
 
         public UpdateItem()
         {
@@ -28,13 +28,56 @@ namespace Naari.Windows
         public UpdateItem(Item item)
         {
             InitializeComponent();
-            this.item = item;
-            this.DataContext = item;
+            try
+            {
+                id = item.ID;
+                this.DataContext = item;
+                uiPurchaseDate.Value = (!string.IsNullOrEmpty(item.PurchaseDate)) ? Convert.ToDateTime(item.PurchaseDate) : (DateTime?)null;
+                uiSellingDate.Value = (!string.IsNullOrEmpty(item.SellingDate)) ? Convert.ToDateTime(item.SellingDate) : (DateTime?)null;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error while initializing update");
+            }
         }
 
         private void uiOK_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (MessageBoxResult.Cancel == MessageBox.Show("Are you sure you want to update", "Update", MessageBoxButton.OKCancel))
+                {
+                    return;
+                }
+                StringBuilder sb = new StringBuilder();
+                sb.Append(string.Format(" update Naari set PurchaseDate = '{0}', Vendor = '{1}' ", uiPurchaseDate.Value, uiVendor.Text));
+                sb.Append(string.Format(" , BillNumber = '{0}', ItemName = '{1}' ", uiBillNumber.Text, uiItemName.Text));
+                sb.Append(string.Format(" , CostPrice = '{0}' ", uiCostPrice.Text));
+                if (!string.IsNullOrEmpty(uiLocation.Text))
+                {
+                    sb.Append(string.Format(" , Location = '{0}' ", uiLocation.Text));
+                }
+                if (!string.IsNullOrEmpty(uiSellingPrice.Text))
+                {
+                    sb.Append(string.Format(" , SellingPrice = '{0}' ", uiSellingPrice.Text));
+                }
+                if (uiSellingDate.Value is DateTime)
+                {
+                    sb.Append(string.Format(" , SellingDate = '{0}' ", uiSellingDate.Value));
+                }
+                sb.Append(string.Format(" where ID = {0} ", id));
 
+                DataManager.SetData(sb.ToString());
+                if (ItemUpdated != null)
+                {
+                    ItemUpdated(true);
+                }
+                this.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error while updating");
+            }
         }
 
         private void uiCancel_Click(object sender, RoutedEventArgs e)
