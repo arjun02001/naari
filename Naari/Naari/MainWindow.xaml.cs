@@ -63,7 +63,18 @@ namespace Naari
 
         private void uiDeleteItem_Click(object sender, RoutedEventArgs e)
         {
-
+            if (null == uiDataGrid.SelectedItem)
+            {
+                MessageBox.Show("Select item to delete");
+                return;
+            }
+            if(MessageBoxResult.Cancel == MessageBox.Show("Are you sure you want to delete this", "Delete", MessageBoxButton.OKCancel))
+            {
+                return;
+            }
+            string sql = string.Format(" delete from Naari where ID = {0} ", (((Item)uiDataGrid.SelectedItem).ID));
+            DataManager.SetData(sql);
+            PopulateItems();
         }
 
         private void uiShowAll_SelectionChanged(object sender, SelectionChangedEventArgs e)
