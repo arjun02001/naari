@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Naari.Classes;
 using Naari.Windows;
+using System.Data;
 
 namespace Naari
 {
@@ -22,12 +23,27 @@ namespace Naari
         {
             InitializeComponent();
             PopulateItems();
+            PopulateVendorFilter();
         }
 
         private void PopulateItems()
         {
             uiDataGrid.ItemsSource = Item.GetAllItems();
             uiTotalItems.Text = string.Format("Total Items = {0}", uiDataGrid.Items.Count);
+        }
+
+        private void PopulateVendorFilter()
+        {
+            uiVendorFilter.Items.Clear();
+            uiVendorFilter.Items.Add("Vendor Filter");
+            string sql = "select Vendor from Naari_Vendor";
+            DataTable dt = DataManager.GetData(sql);
+            foreach (DataRow dr in dt.Rows)
+            {
+                uiVendorFilter.Items.Add(dr["Vendor"].ToString());
+            }
+            uiVendorFilter.Items.Add("Add New Vendor");
+            uiVendorFilter.SelectedIndex = 0;
         }
 
         private void uiAddNewItem_Click(object sender, RoutedEventArgs e)
@@ -92,6 +108,22 @@ namespace Naari
             }
             catch (Exception)
             {
+            }
+        }
+
+        private void uiVendorFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (0 != uiVendorFilter.SelectedIndex && uiVendorFilter.SelectedIndex != uiVendorFilter.Items.Count - 1)
+            {
+                string vendor = uiVendorFilter.SelectedValue.ToString();
+                uiDataGrid.ItemsSource = Item.GetItemsByVendor(vendor);
+                uiTotalItems.Text = string.Format("Total Items = {0}", uiDataGrid.Items.Count);
+            }
+            if (uiVendorFilter.SelectedIndex == uiVendorFilter.Items.Count - 1)
+            {
+                MessageBox.Show("new");
+                uiVendorFilter.SelectedIndex = 0;
+                PopulateItems();
             }
         }
     }

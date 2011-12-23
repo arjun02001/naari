@@ -47,6 +47,7 @@ namespace Naari.Windows
         {
             try
             {
+                uiVendor.Items.Clear();
                 string sql = "select Vendor from Naari_Vendor";
                 DataTable dt = DataManager.GetData(sql);
                 foreach (DataRow dr in dt.Rows)
