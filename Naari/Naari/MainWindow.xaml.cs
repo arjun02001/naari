@@ -138,5 +138,20 @@ namespace Naari
                 PopulateItems();
             }
         }
+
+        private void uiProfitByDate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void uiProfitByDateLocation_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void uiProfitByDateVendor_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

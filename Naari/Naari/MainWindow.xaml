@@ -20,6 +20,9 @@
                     <Button x:Name="uiAddNewItem" Content="Add New Item" Margin="5" Click="uiAddNewItem_Click"></Button>
                     <Button x:Name="uiUpdateItem" Content="Update Item" Margin="5" Click="uiUpdateItem_Click"></Button>
                     <Button x:Name="uiDeleteItem" Content="Delete Item" Margin="5" Click="uiDeleteItem_Click"></Button>
+                    <Button x:Name="uiProfitByDate" Content="Profit By Date" Margin="5" Click="uiProfitByDate_Click"></Button>
+                    <Button x:Name="uiProfitByDateLocation" Content="Profit By Date/Location" Margin="5" Click="uiProfitByDateLocation_Click"></Button>
+                    <Button x:Name="uiProfitByDateVendor" Content="Profit By Date/Vendor" Margin="5" Click="uiProfitByDateVendor_Click"></Button>
                 </StackPanel>
             </Border>
         </Grid>
