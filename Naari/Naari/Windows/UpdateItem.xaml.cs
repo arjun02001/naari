@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Naari.Classes;
+using System.Data;
 
 namespace Naari.Windows
 {
@@ -28,6 +29,7 @@ namespace Naari.Windows
         public UpdateItem(Item item)
         {
             InitializeComponent();
+            PopulateVendors(item.Vendor);
             try
             {
                 id = item.ID;
@@ -38,6 +40,24 @@ namespace Naari.Windows
             catch (Exception)
             {
                 MessageBox.Show("Error while initializing update");
+            }
+        }
+
+        private void PopulateVendors(string vendor)
+        {
+            try
+            {
+                string sql = "select Vendor from Naari_Vendor";
+                DataTable dt = DataManager.GetData(sql);
+                foreach (DataRow dr in dt.Rows)
+                {
+                    uiVendor.Items.Add(dr["Vendor"].ToString());
+                }
+                uiVendor.Text = vendor;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error while getting vendors");
             }
         }
 

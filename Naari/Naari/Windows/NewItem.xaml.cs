@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Naari.Classes;
+using System.Data;
 
 namespace Naari.Windows
 {
@@ -22,6 +23,25 @@ namespace Naari.Windows
         public NewItem()
         {
             InitializeComponent();
+            PopulateVendors();
+        }
+
+        private void PopulateVendors()
+        {
+            try
+            {
+                string sql = " select Vendor from Naari_Vendor ";
+                DataTable dt = DataManager.GetData(sql);
+                foreach (DataRow dr in dt.Rows)
+                {
+                    uiVendor.Items.Add(dr["Vendor"].ToString());
+                }
+                uiVendor.SelectedIndex = 0;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error while getting vendors");
+            }
         }
 
         private void uiOK_Click(object sender, RoutedEventArgs e)
@@ -32,36 +52,39 @@ namespace Naari.Windows
                 {
                     return;
                 }
-                StringBuilder sb = new StringBuilder();
-                sb.Append(" insert into Naari (PurchaseDate, Vendor, BillNumber, ItemName, CostPrice ");
-                if (!string.IsNullOrEmpty(uiLocation.Text))
+                for (int i = Convert.ToInt32(uiMultiple.Text); i > 0; i--)
                 {
-                    sb.Append(" , Location ");
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append(" insert into Naari (PurchaseDate, Vendor, BillNumber, ItemName, CostPrice ");
+                    if (!string.IsNullOrEmpty(uiLocation.Text))
+                    {
+                        sb.Append(" , Location ");
+                    }
+                    if (!string.IsNullOrEmpty(uiSellingPrice.Text))
+                    {
+                        sb.Append(" , SellingPrice ");
+                    }
+                    if (null != uiSellingDate.Value)
+                    {
+                        sb.Append(" , SellingDate ");
+                    }
+                    sb.Append(" ) ");
+                    sb.Append(string.Format(" values ('{0}', '{1}', '{2}', '{3}', '{4}' ", uiPurchaseDate.Value, uiVendor.Text, uiBillNumber.Text, uiItemName.Text, uiCostPrice.Text));
+                    if (!string.IsNullOrEmpty(uiLocation.Text))
+                    {
+                        sb.Append(string.Format(" , '{0}' ", uiLocation.Text));
+                    }
+                    if (!string.IsNullOrEmpty(uiSellingPrice.Text))
+                    {
+                        sb.Append(string.Format(" , '{0}' ", uiSellingPrice.Text));
+                    }
+                    if (null != uiSellingDate.Value)
+                    {
+                        sb.Append(string.Format(" , '{0}' ", uiSellingDate.Value));
+                    }
+                    sb.Append(" ) ");
+                    DataManager.SetData(sb.ToString());
                 }
-                if (!string.IsNullOrEmpty(uiSellingPrice.Text))
-                {
-                    sb.Append(" , SellingPrice ");
-                }
-                if (null != uiSellingDate.Value)
-                {
-                    sb.Append(" , SellingDate ");
-                }
-                sb.Append(" ) ");
-                sb.Append(string.Format(" values ('{0}', '{1}', '{2}', '{3}', '{4}' ", uiPurchaseDate.Value, uiVendor.Text, uiBillNumber.Text, uiItemName.Text, uiCostPrice.Text));
-                if (!string.IsNullOrEmpty(uiLocation.Text))
-                {
-                    sb.Append(string.Format(" , '{0}' ", uiLocation.Text));
-                }
-                if (!string.IsNullOrEmpty(uiSellingPrice.Text))
-                {
-                    sb.Append(string.Format(" , '{0}' ", uiSellingPrice.Text));
-                }
-                if (null != uiSellingDate.Value)
-                {
-                    sb.Append(string.Format(" , '{0}' ", uiSellingDate.Value));
-                }
-                sb.Append(" ) ");
-                DataManager.SetData(sb.ToString());
                 if (NewItemCreated != null)
                 {
                     NewItemCreated(true);
