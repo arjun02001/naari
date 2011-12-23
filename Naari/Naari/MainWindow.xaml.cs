@@ -113,15 +113,27 @@ namespace Naari
 
         private void uiVendorFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (-1 == uiVendorFilter.SelectedIndex)
+            {
+                return;
+            }
             if (0 != uiVendorFilter.SelectedIndex && uiVendorFilter.SelectedIndex != uiVendorFilter.Items.Count - 1)
             {
                 string vendor = uiVendorFilter.SelectedValue.ToString();
                 uiDataGrid.ItemsSource = Item.GetItemsByVendor(vendor);
                 uiTotalItems.Text = string.Format("Total Items = {0}", uiDataGrid.Items.Count);
             }
-            if (uiVendorFilter.SelectedIndex == uiVendorFilter.Items.Count - 1)
+            if (uiVendorFilter.SelectedIndex == uiVendorFilter.Items.Count - 1 && 0 != uiVendorFilter.SelectedIndex)
             {
-                MessageBox.Show("new");
+                NewVendor newVendor = new NewVendor();
+                newVendor.VendorAdded += (a) =>
+                    {
+                        if (a)
+                        {
+                            PopulateVendorFilter();
+                        }
+                    };
+                newVendor.Show();
                 uiVendorFilter.SelectedIndex = 0;
                 PopulateItems();
             }
