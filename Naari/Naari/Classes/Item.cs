@@ -63,5 +63,20 @@ namespace Naari.Classes
             }
             return items;
         }
+
+        public static List<Item> GetItemsByVendor(string vendor)
+        {
+            List<Item> items = new List<Item>();
+            try
+            {
+                string sql = string.Format(" select * from Naari where Vendor = '{0}' ", vendor);
+                items = Utility.PopulateItemsCollection(DataManager.GetData(sql));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error while getting items by vendor");
+            }
+            return items;
+        }
     }
 }
