@@ -17,8 +17,6 @@ namespace Naari.Windows
 {
     public partial class ProfitByDate : Window
     {
-        double totalCostPrice, totalSellingPrice;
-
         public ProfitByDate()
         {
             InitializeComponent();
@@ -28,6 +26,8 @@ namespace Naari.Windows
         {
             List<Models.ProfitByDate> profits = new List<Models.ProfitByDate>();
             List<KeyValuePair<string, double>> valueList = new List<KeyValuePair<string, double>>();
+            double totalCostPrice = 0, totalSellingPrice = 0;
+
             if (null == uiFromDate.Value || null == uiToDate.Value)
             {
                 MessageBox.Show("Please enter a date range");
