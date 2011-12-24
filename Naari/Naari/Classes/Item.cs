@@ -78,5 +78,20 @@ namespace Naari.Classes
             }
             return items;
         }
+
+        public static Item GetItemByID(int id)
+        {
+            List<Item> items = new List<Item>();
+            try
+            {
+                string sql = string.Format(" select * from Naari where ID = {0} ", id);
+                items = Utility.PopulateItemsCollection(DataManager.GetData(sql));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error while getting item by id");
+            }
+            return (items.Count > 0) ? items[0] : null;
+        }
     }
 }
