@@ -153,5 +153,18 @@ namespace Naari
         {
 
         }
+
+        private void uiUpdateItemByID_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateItemByID updateItemByID = new UpdateItemByID();
+            updateItemByID.ItemUpdated += (u) =>
+                {
+                    if (u)
+                    {
+                        PopulateItems();
+                    }
+                };
+            updateItemByID.Show();
+        }
     }
 }

@@ -79,6 +79,9 @@
     <Compile Include="Windows\UpdateItem.xaml.cs">
       <DependentUpon>UpdateItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\UpdateItemByID.xaml.cs">
+      <DependentUpon>UpdateItemByID.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -115,6 +118,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\UpdateItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UpdateItemByID.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

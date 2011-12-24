@@ -18,6 +18,7 @@
                     </ComboBox>
                     <ComboBox x:Name="uiVendorFilter" Margin="5" SelectionChanged="uiVendorFilter_SelectionChanged"></ComboBox>
                     <Button x:Name="uiAddNewItem" Content="Add New Item" Margin="5" Click="uiAddNewItem_Click"></Button>
+                    <Button x:Name="uiUpdateItemByID" Content="Update Item By ID" Margin="5" Click="uiUpdateItemByID_Click"></Button>
                     <Button x:Name="uiUpdateItem" Content="Update Item" Margin="5" Click="uiUpdateItem_Click"></Button>
                     <Button x:Name="uiDeleteItem" Content="Delete Item" Margin="5" Click="uiDeleteItem_Click"></Button>
                     <Button x:Name="uiProfitByDate" Content="Profit By Date" Margin="5" Click="uiProfitByDate_Click"></Button>
