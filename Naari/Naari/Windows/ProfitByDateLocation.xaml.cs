@@ -71,10 +71,18 @@ namespace Naari.Windows
             }
             try
             {
-                string sql = string.Format(" select Vendor, sum(CostPrice) as SumCostPrice, sum(SellingPrice) as SumSellingPrice ") +
-                                string.Format(" , sum(SellingPrice) - sum(CostPrice) as Profit, count(*) as ItemsSold ") +
-                                string.Format(" from Naari where SellingDate >= #{0}# and SellingDate <= #{1}# group by Vendor order by 4 desc ", uiFromDate.Value, uiToDate.Value);
-                DataTable dt = DataManager.GetData(sql);
+                StringBuilder sb = new StringBuilder();
+                sb.Append(string.Format(" select Vendor, sum(CostPrice) as SumCostPrice, sum(SellingPrice) as SumSellingPrice "));
+                sb.Append(string.Format(" , sum(SellingPrice) - sum(CostPrice) as Profit, count(*) as ItemsSold "));
+                sb.Append(string.Format(" from Naari where SellingDate >= #{0}# and SellingDate <= #{1}# ", uiFromDate.Value, uiToDate.Value));
+                sb.Append(string.Format(" and Location in ( "));
+                for(int i = 0; i < locations.Count - 1; i++)
+                {
+                    sb.Append(string.Format(" '{0}', ", locations[i]));
+                }
+                sb.Append(string.Format(" '{0}' ", locations[locations.Count - 1]));
+                sb.Append(string.Format(" ) group by Vendor order by 4 desc "));
+                DataTable dt = DataManager.GetData(sb.ToString());
                 totalCostPrice = totalSellingPrice = 0;
                 foreach (DataRow dr in dt.Rows)
                 {

@@ -73,9 +73,6 @@
     <Compile Include="Windows\ProfitByDateLocation.xaml.cs">
       <DependentUpon>ProfitByDateLocation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ProfitByDateVendor.xaml.cs">
-      <DependentUpon>ProfitByDateVendor.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\UpdateItem.xaml.cs">
       <DependentUpon>UpdateItem.xaml</DependentUpon>
     </Compile>
@@ -109,10 +106,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\ProfitByDateLocation.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\ProfitByDateVendor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
