@@ -25,7 +25,7 @@ namespace Naari.Classes
             try
             {
                 string sql = string.Format(" select * from Naari order by ID desc ");
-                items = Utility.PopulateItemsCollection(DataManager.GetData(sql));
+                items = PopulateItemsCollection(DataManager.GetData(sql));
             }
             catch (Exception)
             {
@@ -40,7 +40,7 @@ namespace Naari.Classes
             try
             {
                 string sql = string.Format(" select * from Naari where SellingPrice is null order by ID desc ");
-                items = Utility.PopulateItemsCollection(DataManager.GetData(sql));
+                items = PopulateItemsCollection(DataManager.GetData(sql));
             }
             catch (Exception)
             {
@@ -55,7 +55,7 @@ namespace Naari.Classes
             try
             {
                 string sql = string.Format(" select * from Naari where SellingPrice <> null order by ID desc ");
-                items = Utility.PopulateItemsCollection(DataManager.GetData(sql));
+                items = PopulateItemsCollection(DataManager.GetData(sql));
             }
             catch (Exception)
             {
@@ -70,7 +70,7 @@ namespace Naari.Classes
             try
             {
                 string sql = string.Format(" select * from Naari where Vendor = '{0}' ", vendor);
-                items = Utility.PopulateItemsCollection(DataManager.GetData(sql));
+                items = PopulateItemsCollection(DataManager.GetData(sql));
             }
             catch (Exception)
             {
@@ -85,7 +85,7 @@ namespace Naari.Classes
             try
             {
                 string sql = string.Format(" select * from Naari where ID = {0} ", id);
-                items = Utility.PopulateItemsCollection(DataManager.GetData(sql));
+                items = PopulateItemsCollection(DataManager.GetData(sql));
             }
             catch (Exception)
             {
