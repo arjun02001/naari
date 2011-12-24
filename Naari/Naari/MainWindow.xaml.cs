@@ -149,11 +149,6 @@ namespace Naari
             new ProfitByDateLocation().Show();
         }
 
-        private void uiProfitByDateVendor_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void uiUpdateItemByID_Click(object sender, RoutedEventArgs e)
         {
             UpdateItemByID updateItemByID = new UpdateItemByID();
