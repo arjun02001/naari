@@ -146,7 +146,7 @@ namespace Naari
 
         private void uiProfitByDateLocation_Click(object sender, RoutedEventArgs e)
         {
-
+            new ProfitByDateLocation().Show();
         }
 
         private void uiProfitByDateVendor_Click(object sender, RoutedEventArgs e)
