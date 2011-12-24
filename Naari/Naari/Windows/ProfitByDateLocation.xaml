@@ -26,9 +26,9 @@
                     <ListBox x:Name="uiLocation" Margin="5" SelectionMode="Multiple" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="100" Width="120"></ListBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Margin="5" x:Name="uiTotalCostPrice" FontWeight="Bold"></TextBlock>
-                    <TextBlock Margin="5" x:Name="uiTotalSellingPrice" FontWeight="Bold"></TextBlock>
-                    <TextBlock Margin="5" x:Name="uiTotalProfit" FontWeight="Bold"></TextBlock>
+                    <TextBlock Margin="5" x:Name="uiTotalCostPrice" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Margin="5" x:Name="uiTotalSellingPrice" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Margin="5" x:Name="uiTotalProfit" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                     <Button x:Name="uiSubmit" Margin="5" Content="Submit" Click="uiSubmit_Click" HorizontalAlignment="Right"></Button>
                 </StackPanel>
             </StackPanel>

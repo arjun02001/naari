@@ -19,9 +19,9 @@
                 <Button x:Name="uiSubmit" Margin="5" Content="Submit" Click="uiSubmit_Click" HorizontalAlignment="Right"></Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Margin="5" x:Name="uiTotalCostPrice" FontWeight="Bold"></TextBlock>
-                <TextBlock Margin="5" x:Name="uiTotalSellingPrice" FontWeight="Bold"></TextBlock>
-                <TextBlock Margin="5" x:Name="uiTotalProfit" FontWeight="Bold"></TextBlock>
+                <TextBlock Margin="5" x:Name="uiTotalCostPrice" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Margin="5" x:Name="uiTotalSellingPrice" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Margin="5" x:Name="uiTotalProfit" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
             </StackPanel>
         </StackPanel>
         <Grid Grid.Row="1">
