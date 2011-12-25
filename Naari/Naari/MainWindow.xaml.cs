@@ -174,5 +174,17 @@ namespace Naari
                 uiVendorFilter.SelectedIndex = 0;
             }
         }
+
+        private void uiMasterSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string query = uiMasterSearch.Text.Trim();
+            if (string.IsNullOrEmpty(query))
+            {
+                PopulateItems();
+                return;
+            }
+            uiDataGrid.ItemsSource = Item.GetItemsByMasterSearch(query);
+            uiTotalItems.Text = string.Format("Total Items = {0}", uiDataGrid.Items.Count);
+        }
     }
 }
