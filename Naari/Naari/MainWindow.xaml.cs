@@ -161,5 +161,18 @@ namespace Naari
                 };
             updateItemByID.Show();
         }
+
+        private void uiRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            PopulateItems();
+            if (uiShowAll.Items.Count > 0)
+            {
+                uiShowAll.SelectedIndex = 0;
+            }
+            if (uiVendorFilter.Items.Count > 0)
+            {
+                uiVendorFilter.SelectedIndex = 0;
+            }
+        }
     }
 }
