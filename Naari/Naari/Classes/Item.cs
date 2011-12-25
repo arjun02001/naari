@@ -94,6 +94,26 @@ namespace Naari.Classes
             return (items.Count > 0) ? items[0] : null;
         }
 
+        public static List<Item> GetItemsByMasterSearch(string query)
+        {
+            List<Item> items = new List<Item>();
+            try
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append(string.Format(" select * from Naari where ID like '%{0}%' ", query));
+                sb.Append(string.Format(" or Vendor like '%{0}%' ", query));
+                sb.Append(string.Format(" or BillNumber like '%{0}%' ", query));
+                sb.Append(string.Format(" or ItemName like '%{0}%' ", query));
+                sb.Append(string.Format(" or Location like '%{0}%' ", query));
+                items = PopulateItemsCollection(DataManager.GetData(sb.ToString()));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error while searching");
+            }
+            return items;
+        }
+
         public static List<Item> PopulateItemsCollection(DataTable dt)
         {
             List<Item> items = new List<Item>();
