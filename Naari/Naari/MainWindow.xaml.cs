@@ -29,7 +29,7 @@ namespace Naari
         private void PopulateItems()
         {
             uiDataGrid.ItemsSource = Item.GetAllItems();
-            uiTotalItems.Text = string.Format("Total Items = {0}", uiDataGrid.Items.Count);
+            uiTotalItems.Text = string.Format("Total Items = {0}", uiDataGrid.Items.Count - 1);
         }
 
         private void PopulateVendorFilter()
@@ -104,7 +104,7 @@ namespace Naari
                     case 2: uiDataGrid.ItemsSource = Item.GetUnsoldItems(); break;
                     default: uiDataGrid.ItemsSource = Item.GetAllItems(); break;
                 }
-                uiTotalItems.Text = string.Format("Total Items = {0}", uiDataGrid.Items.Count);
+                uiTotalItems.Text = string.Format("Total Items = {0}", uiDataGrid.Items.Count - 1);
             }
             catch (Exception)
             {
@@ -121,7 +121,7 @@ namespace Naari
             {
                 string vendor = uiVendorFilter.SelectedValue.ToString();
                 uiDataGrid.ItemsSource = Item.GetItemsByVendor(vendor);
-                uiTotalItems.Text = string.Format("Total Items = {0}", uiDataGrid.Items.Count);
+                uiTotalItems.Text = string.Format("Total Items = {0}", uiDataGrid.Items.Count - 1);
             }
             if (uiVendorFilter.SelectedIndex == uiVendorFilter.Items.Count - 1 && 0 != uiVendorFilter.SelectedIndex)
             {
@@ -184,7 +184,7 @@ namespace Naari
                 return;
             }
             uiDataGrid.ItemsSource = Item.GetItemsByMasterSearch(query);
-            uiTotalItems.Text = string.Format("Total Items = {0}", uiDataGrid.Items.Count);
+            uiTotalItems.Text = string.Format("Total Items = {0}", uiDataGrid.Items.Count - 1);
         }
     }
 }
