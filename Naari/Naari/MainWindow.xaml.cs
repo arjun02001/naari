@@ -71,7 +71,7 @@ namespace Naari
                 {
                     if (u)
                     {
-                        PopulateItems();
+                        //PopulateItems();
                     }
                 };
             updateItem.Show();
@@ -156,7 +156,7 @@ namespace Naari
                 {
                     if (u)
                     {
-                        PopulateItems();
+                        //PopulateItems();
                     }
                 };
             updateItemByID.Show();

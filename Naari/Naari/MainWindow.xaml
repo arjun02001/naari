@@ -17,6 +17,12 @@
                     <TextBlock x:Name="uiTotalItems" Margin="5" FontWeight="Bold" Foreground="White"></TextBlock>
                     <GroupBox>
                         <GroupBox.Header>
+                            <TextBlock Text="Master Search" FontWeight="Bold" Foreground="White"></TextBlock>
+                        </GroupBox.Header>
+                        <TextBox x:Name="uiMasterSearch" Margin="5" TextChanged="uiMasterSearch_TextChanged"></TextBox>
+                    </GroupBox>
+                    <GroupBox>
+                        <GroupBox.Header>
                             <TextBlock Text="Filter" FontWeight="Bold" Foreground="White"></TextBlock>
                         </GroupBox.Header>
                         <StackPanel Orientation="Vertical">
@@ -49,7 +55,6 @@
                         </StackPanel>
                     </GroupBox>
                     <Button x:Name="uiRefresh" Content="Refresh" Margin="5" Click="uiRefresh_Click"></Button>
-                    <TextBox x:Name="uiMasterSearch" Margin="5" TextChanged="uiMasterSearch_TextChanged"></TextBox>
                 </StackPanel>
             </GroupBox>
         </Grid>

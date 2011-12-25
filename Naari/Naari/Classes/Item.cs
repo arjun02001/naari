@@ -18,6 +18,7 @@ namespace Naari.Classes
         public string Location { get; set; }
         public double? SellingPrice { get; set; }
         public string SellingDate { get; set; }
+        public double? Profit { get; set; }
 
         public static List<Item> GetAllItems()
         {
@@ -101,10 +102,12 @@ namespace Naari.Classes
             {
                 StringBuilder sb = new StringBuilder();
                 sb.Append(string.Format(" select * from Naari where ID like '%{0}%' ", query));
+                sb.Append(string.Format(" or PurchaseDate like '%{0}%' ", query));
                 sb.Append(string.Format(" or Vendor like '%{0}%' ", query));
                 sb.Append(string.Format(" or BillNumber like '%{0}%' ", query));
                 sb.Append(string.Format(" or ItemName like '%{0}%' ", query));
                 sb.Append(string.Format(" or Location like '%{0}%' ", query));
+                sb.Append(string.Format(" or SellingDate like '%{0}%' ", query));
                 items = PopulateItemsCollection(DataManager.GetData(sb.ToString()));
             }
             catch (Exception)
@@ -131,7 +134,8 @@ namespace Naari.Classes
                         CostPrice = Convert.ToDouble(dr["CostPrice"]),
                         Location = (dr["Location"] != DBNull.Value) ? dr["Location"].ToString() : string.Empty,
                         SellingPrice = (dr["SellingPrice"] != DBNull.Value) ? Convert.ToDouble(dr["SellingPrice"]) : (double?)null,
-                        SellingDate = (dr["SellingDate"] != DBNull.Value) ? Convert.ToDateTime(dr["SellingDate"]).ToShortDateString() : string.Empty
+                        SellingDate = (dr["SellingDate"] != DBNull.Value) ? Convert.ToDateTime(dr["SellingDate"]).ToShortDateString() : string.Empty,
+                        Profit = (dr["SellingPrice"] != DBNull.Value) ? Convert.ToDouble(dr["SellingPrice"]) - Convert.ToDouble(dr["CostPrice"]) : (double?)null
                     });
                 }
             }
