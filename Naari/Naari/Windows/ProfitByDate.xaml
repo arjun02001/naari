@@ -4,6 +4,9 @@
         xmlns:toolKit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
         xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
         Title="ProfitByDate" Height="500" Width="500">
+    <Window.Background>
+        <ImageBrush ImageSource="/Naari;component/Images/Medusa.png"></ImageBrush>
+    </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -12,16 +15,16 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Grid.Row="0">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Margin="5" Text="From" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Margin="5" Text="From" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"></TextBlock>
                 <toolKit:DateTimePicker Margin="5" x:Name="uiFromDate" Width="160"></toolKit:DateTimePicker>
-                <TextBlock Margin="5" Text="To" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Margin="5" Text="To" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"></TextBlock>
                 <toolKit:DateTimePicker Margin="5" x:Name="uiToDate" Width="160"></toolKit:DateTimePicker>
                 <Button x:Name="uiSubmit" Margin="5" Content="Submit" Click="uiSubmit_Click" HorizontalAlignment="Right"></Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Margin="5" x:Name="uiTotalCostPrice" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
-                <TextBlock Margin="5" x:Name="uiTotalSellingPrice" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
-                <TextBlock Margin="5" x:Name="uiTotalProfit" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Margin="5" x:Name="uiTotalCostPrice" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"></TextBlock>
+                <TextBlock Margin="5" x:Name="uiTotalSellingPrice" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"></TextBlock>
+                <TextBlock Margin="5" x:Name="uiTotalProfit" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"></TextBlock>
             </StackPanel>
         </StackPanel>
         <Grid Grid.Row="1">

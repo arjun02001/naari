@@ -4,6 +4,9 @@
         xmlns:toolKit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
         xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
         Title="ProfitByDateLocation" Height="500" Width="600">
+    <Window.Background>
+        <ImageBrush ImageSource="/Naari;component/Images/Medusa.png"></ImageBrush>
+    </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -12,9 +15,9 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Grid.Row="0">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Margin="5" Text="From" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Margin="5" Text="From" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"></TextBlock>
                 <toolKit:DateTimePicker Margin="5" x:Name="uiFromDate" Width="160"></toolKit:DateTimePicker>
-                <TextBlock Margin="5" Text="To" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Margin="5" Text="To" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"></TextBlock>
                 <toolKit:DateTimePicker Margin="5" x:Name="uiToDate" Width="160"></toolKit:DateTimePicker>
             </StackPanel>
         </StackPanel>
@@ -22,13 +25,13 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
                     <DataGrid Margin="5" x:Name="uiDataGrid" AlternatingRowBackground="AliceBlue" AlternationCount="2" CanUserResizeColumns="True" CanUserSortColumns="True" Height="100"></DataGrid>
-                    <TextBlock Margin="5" Text="Location" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Margin="5" Text="Location" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"></TextBlock>
                     <ListBox x:Name="uiLocation" Margin="5" SelectionMode="Multiple" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="100" Width="120"></ListBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Margin="5" x:Name="uiTotalCostPrice" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
-                    <TextBlock Margin="5" x:Name="uiTotalSellingPrice" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
-                    <TextBlock Margin="5" x:Name="uiTotalProfit" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Margin="5" x:Name="uiTotalCostPrice" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"></TextBlock>
+                    <TextBlock Margin="5" x:Name="uiTotalSellingPrice" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"></TextBlock>
+                    <TextBlock Margin="5" x:Name="uiTotalProfit" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"></TextBlock>
                     <Button x:Name="uiSubmit" Margin="5" Content="Submit" Click="uiSubmit_Click" HorizontalAlignment="Right"></Button>
                 </StackPanel>
             </StackPanel>
