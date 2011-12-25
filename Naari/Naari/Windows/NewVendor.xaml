@@ -2,9 +2,12 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="NewVendor" Height="200" Width="300">
+    <Window.Background>
+        <ImageBrush ImageSource="/Naari;component/Images/Medusa.png"></ImageBrush>
+    </Window.Background>
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <StackPanel Orientation="Horizontal">
-            <TextBlock Margin="5" Text="Vendor" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Margin="5" Text="Vendor" VerticalAlignment="Center" Foreground="White" FontWeight="Bold"></TextBlock>
             <TextBox x:Name="uiVendor" Margin="5" Width="120"></TextBox>
             <Button x:Name="uiAddVendor" Margin="5" Click="uiAddVendor_Click" Content="Add Vendor"></Button>
         </StackPanel>
