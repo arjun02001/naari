@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Naari.Classes;
 using Naari.Windows;
 using System.Data;
+using System.IO;
 
 namespace Naari
 {
@@ -29,7 +30,7 @@ namespace Naari
         private void PopulateItems()
         {
             uiDataGrid.ItemsSource = Item.GetAllItems();
-            uiTotalItems.Text = string.Format("Total Items = {0}", uiDataGrid.Items.Count - 1);
+            uiTotalItems.Text = string.Format("Total Items = {0}", uiDataGrid.Items.Count);
         }
 
         private void PopulateVendorFilter()
@@ -104,7 +105,7 @@ namespace Naari
                     case 2: uiDataGrid.ItemsSource = Item.GetUnsoldItems(); break;
                     default: uiDataGrid.ItemsSource = Item.GetAllItems(); break;
                 }
-                uiTotalItems.Text = string.Format("Total Items = {0}", uiDataGrid.Items.Count - 1);
+                uiTotalItems.Text = string.Format("Total Items = {0}", uiDataGrid.Items.Count);
             }
             catch (Exception)
             {
@@ -121,7 +122,7 @@ namespace Naari
             {
                 string vendor = uiVendorFilter.SelectedValue.ToString();
                 uiDataGrid.ItemsSource = Item.GetItemsByVendor(vendor);
-                uiTotalItems.Text = string.Format("Total Items = {0}", uiDataGrid.Items.Count - 1);
+                uiTotalItems.Text = string.Format("Total Items = {0}", uiDataGrid.Items.Count);
             }
             if (uiVendorFilter.SelectedIndex == uiVendorFilter.Items.Count - 1 && 0 != uiVendorFilter.SelectedIndex)
             {
@@ -184,7 +185,20 @@ namespace Naari
                 return;
             }
             uiDataGrid.ItemsSource = Item.GetItemsByMasterSearch(query);
-            uiTotalItems.Text = string.Format("Total Items = {0}", uiDataGrid.Items.Count - 1);
+            uiTotalItems.Text = string.Format("Total Items = {0}", uiDataGrid.Items.Count);
+        }
+
+        private void uiExport_Click(object sender, RoutedEventArgs e)
+        {
+            using (StreamWriter sw = new StreamWriter("Naari.csv"))
+            {
+                sw.WriteLine("ID,PurchaseDate,Vendor,BillNumber,ItemName,CostPrice,Location,SellingPrice,SellingDate,Profit" );
+                foreach (Item item in uiDataGrid.Items)
+                {
+                    sw.WriteLine(item.ID + "," + item.PurchaseDate + "," + item.Vendor + "," + item.BillNumber + "," + item.ItemName + "," + item.CostPrice + "," + item.Location + "," + item.SellingPrice + "," + item.SellingDate + "," + item.Profit);
+                }
+            }
+            System.Diagnostics.Process.Start("Naari.csv");
         }
     }
 }
