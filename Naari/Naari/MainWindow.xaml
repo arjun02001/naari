@@ -13,7 +13,7 @@
         <Grid Grid.Column="0">
             <GroupBox Margin="5">
                 <StackPanel Orientation="Vertical">
-                    <Image Margin="5" Source="Images/Logo.jpg" MaxWidth="140" MaxHeight="140"></Image>
+                    <Image Margin="5" Source="Images/Logo.jpg" MaxWidth="70" MaxHeight="70"></Image>
                     <TextBlock x:Name="uiTotalItems" Margin="5" FontWeight="Bold" Foreground="White"></TextBlock>
                     <GroupBox>
                         <GroupBox.Header>
