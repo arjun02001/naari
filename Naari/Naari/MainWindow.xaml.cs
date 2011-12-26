@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿//Arjun Mukherji
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Naari.Classes;
 using Naari.Windows;
 using System.Data;
 using System.IO;
+using System.Net.Mail;
+using System.Net;
 
 namespace Naari
 {
@@ -199,6 +192,32 @@ namespace Naari
                 }
             }
             System.Diagnostics.Process.Start("Naari.csv");
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            try
+            {
+                MailMessage mail = new MailMessage()
+                {
+                    From = new MailAddress("replytoarjunmukherji@gmail.com"),
+                    Subject = "Naari DB backup",
+                    Body = DateTime.Now.ToString()
+                };
+                mail.To.Add("arjun02001@gmail.com");
+                mail.Attachments.Add(new Attachment("Naari.accdb"));
+                SmtpClient client = new SmtpClient()
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    Credentials = new NetworkCredential("replytoarjunmukherji@gmail.com", "arjunmukherji"),
+                    EnableSsl = true
+                };
+                client.Send(mail);
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }
